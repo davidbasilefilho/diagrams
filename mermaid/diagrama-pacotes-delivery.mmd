@@ -1,0 +1,45 @@
+flowchart TB
+    subgraph UI["📱 br.com.delivery.ui"]
+        UI_Activity["Activities<br/>Telas e navegação"]
+        UI_Fragment["Fragments<br/>Componentes reutilizáveis"]
+        UI_Adapter["Adapters<br/>Listas e RecyclerView"]
+    end
+    
+    subgraph LOGIC["⚙️ br.com.delivery.logic"]
+        LOGIC_UseCase["Use Cases<br/>Casos de uso"]
+        LOGIC_Validator["Validators<br/>Validação de dados"]
+        LOGIC_Orchestrator["Orchestrator<br/>Orquestração"]
+    end
+    
+    subgraph DATA["💾 br.com.delivery.data"]
+        DATA_Repository["Repositories<br/>Padrão repository"]
+        DATA_API["API Client<br/>Comunicação REST"]
+        DATA_Local["Local Storage<br/>SQLite/SharedPrefs"]
+    end
+    
+    subgraph DOMAIN["🏗️ br.com.delivery.domain"]
+        DOMAIN_Entity["Entities<br/>Modelos de domínio"]
+        DOMAIN_Value["Value Objects<br/>Objetos de valor"]
+        DOMAIN_Interface["Interfaces<br/>Contratos"]
+    end
+    
+    subgraph INFRA["🔧 br.com.delivery.infra"]
+        INFRA_Network["Network<br/>Conexão de rede"]
+        INFRA_Cache["Cache<br/>Cache local"]
+        INFRA_Logger["Logger<br/>Log de eventos"]
+    end
+    
+    subgraph NOTIF["📬 br.com.delivery.notificacao"]
+        NOTIF_Push["Push Service<br/>Notificações push"]
+        NOTIF_Email["Email Service<br/>E-mail transacional"]
+        NOTIF_SMS["SMS Service<br/>Mensagens SMS"]
+    end
+    
+    UI --> LOGIC
+    UI --> DOMAIN
+    LOGIC --> DOMAIN
+    LOGIC --> DATA
+    LOGIC --> NOTIF
+    DATA --> DOMAIN
+    DATA --> INFRA
+    INFRA --> NOTIF

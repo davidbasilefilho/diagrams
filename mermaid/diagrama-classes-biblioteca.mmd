@@ -1,0 +1,77 @@
+classDiagram
+    class Usuario {
+        +int id
+        +String nome
+        +String email
+        +String telefone
+        +String tipo
+        +consultarLivros()
+        +renovarEmprestimo()
+        +fazerReserva()
+    }
+    
+    class Bibliotecario {
+        +String matricula
+        +String turno
+        +cadastrarLivro()
+        +registrarEmprestimo()
+        +registrarDevolucao()
+        +gerarRelatorio()
+    }
+    
+    class Livro {
+        +String isbn
+        +String titulo
+        +String autor
+        +int anoPublicacao
+        +int exemplares
+        +int disponiveis
+        +consultarDisponibilidade()
+        +atualizarEstoque()
+    }
+    
+    class Emprestimo {
+        +Date dataEmprestimo
+        +Date dataDevolucaoPrevista
+        +Date dataDevolucaoReal
+        +String status
+        +float multa
+        +registrar()
+        +devolver()
+        +calcularMulta()
+    }
+    
+    class Reserva {
+        +Date dataReserva
+        +Date dataExpiracao
+        +String status
+        +criarReserva()
+        +cancelarReserva()
+        +notificarDisponibilidade()
+    }
+    
+    class Categoria {
+        +int id
+        +String nome
+        +String descricao
+        +listarLivros()
+        +obterEstatisticas()
+    }
+    
+    class Exemplar {
+        +int numeroTombo
+        +String localizacao
+        +String estado
+        +boolean disponibilidade
+    }
+    
+    Usuario <|-- Bibliotecario : herança
+    Usuario "1" --> "*" Emprestimo : realiza
+    Usuario "1" --> "*" Reserva : faz
+    Livro "1" --> "*" Exemplar : possui
+    Livro "*" --> "1" Categoria : pertence
+    Emprestimo "*" --> "1" Exemplar : referencia
+    Reserva "*" --> "1" Livro : aguarda
+    Emprestimo "1" --> "1" Usuario : atende
+    Bibliotecario "1" --> "*" Emprestimo : processa
+    Emprestimo "1" --> "1" Reserva : podeCancelar

@@ -1,0 +1,54 @@
+flowchart TB
+    subgraph CORE["🔷 br.com.cursos.core"]
+        CORE_Auth["Auth<br/>Autenticação"]
+        CORE_Logger["Logger<br/>Logging"]
+        CORE_Config["Config<br/>Configurações"]
+        CORE_Error["Error<br/>Tratamento de erros"]
+    end
+    
+    subgraph USERS["👥 br.com.cursos.usuarios"]
+        USERS_Entity["User<br/>Entidade usuário"]
+        USERS_Profile["Profile<br/>Perfil"]
+        USERS_Role["Role<br/>Papéis"]
+        USERS_Auth["Auth Service<br/>Serviço de auth"]
+    end
+    
+    subgraph COURSES["📚 br.com.cursos.cursos"]
+        COURSES_Entity["Course<br/>Entidade curso"]
+        COURSES_Module["Module<br/>Módulos"]
+        COURSES_Lesson["Lesson<br/>Aulas"]
+        COURSES_Category["Category<br/>Categorias"]
+    end
+    
+    subgraph INTERACTIONS["💬 br.com.cursos.interacoes"]
+        INT_Forum["Forum<br/>Fórum"]
+        INT_Comment["Comment<br/>Comentários"]
+        INT_Rating["Rating<br/>Avaliações"]
+        INT_Progress["Progress<br/>Progresso"]
+    end
+    
+    subgraph PAYMENT["💳 br.com.pagamento"]
+        PAY_Gateway["Gateway<br/>Gateway"]
+        PAY_Subscription["Subscription<br/>Assinaturas"]
+        PAY_Invoice["Invoice<br/>Faturas"]
+    end
+    
+    subgraph NOTIFICATION["📧 br.com.notificacao"]
+        NOTIF_Email["Email<br/>E-mail"]
+        NOTIF_Push["Push<br/>Push"]
+        NOTIF_Template["Template<br/>Templates"]
+    end
+    
+    subgraph CDN["🌐 br.com.cdn"]
+        CDN_Video["Video<br/>Vídeos"]
+        CDN_Storage["Storage<br/>Armazenamento"]
+        CDN_CDN["CDN<br/>CDN"]
+    end
+    
+    USERS --> CORE
+    COURSES --> CORE
+    INTERACTIONS --> CORE
+    PAYMENT --> CORE
+    NOTIFICATION --> CORE
+    CDN --> COURSES
+    CDN --> INTERACTIONS

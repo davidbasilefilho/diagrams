@@ -1,0 +1,6 @@
+export default {
+  $schema: "./node_modules/oxfmt/configuration_schema.json",
+  printWidth: 100,
+  tabWidth: 2,
+  bracketSameLine: true,
+};

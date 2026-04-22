@@ -1,0 +1,9 @@
+flowchart TD
+    Inicio([Inicio]) --> Buscar[Buscar Curso]
+    Buscar --> Matricular[Realizar Matricula]
+    Matricular --> Aprovar{Pagamento Aprovado?}
+    Aprovar -->|Nao| Fim([Fim])
+    Aprovar -->|Sim| Acessar[Acessar Conteudo]
+    Acessar --> Concluir[Concluir Curso]
+    Concluir --> Certificado[Emitir Certificado]
+    Certificado --> Fim

@@ -1,49 +1,81 @@
-# Agents Config
+# Mermaid Diagram Renderer
 
-Centralized AI agent configuration using [`@intellectronica/ruler`](https://github.com/intellectronica/ruler).
+Render [Mermaid](https://mermaid.js.org/) diagrams from `.mmd` files to SVG using the official Mermaid CLI.
 
 ## Requirements
 
 - [Bun](https://bun.sh)
 
-## For Humans
-
-### Setup
+## Setup
 
 ```bash
 bun install
 ```
 
-### Apply Configurations
+## Usage
+
+Render all diagrams in the `mermaid/` directory to `out/`:
 
 ```bash
-bun run ruler apply
+bun run render
 ```
 
-For agent-specific instructions, see [INSTALL.md](INSTALL.md).
-
-## For Agents
-
+Expected output:
 ```
-Install this shared AI agent configuration.
-Read the raw installation guide:
-https://raw.githubusercontent.com/davidbasilefilho/agents/main/INSTALL.md
+Rendered 3 diagrams:
+  - out/diagrama-atividades-cursos.svg
+  - out/diagrama-classes-biblioteca.svg
+  - out/diagrama-pacotes-delivery.svg
+```
+
+### Programmatic API
+
+Import and use in your own scripts:
+
+```typescript
+import { renderFile, renderAll, getDiagramFiles } from "./src/index.js";
+
+// Render a single diagram
+const outputPath = renderFile("mermaid/my-diagram.mmd");
+
+// Render all diagrams
+const files = renderAll();
+
+// Get all .mmd files
+const diagrams = getDiagramFiles();
 ```
 
 ## Project Structure
 
 ```
-├── .ruler/
-│   ├── AGENTS.md      # Agent instructions
-│   ├── ruler.toml     # Ruler configuration
-│   └── skills/        # 21 skills
-├── .opencode/         # Applied opencode config
+diagrams/
+├── mermaid/           # Source .mmd diagram files
+│   ├── diagrama-atividades-cursos.mmd
+│   ├── diagrama-classes-biblioteca.mmd
+│   └── diagrama-pacotes-delivery.mmd
+├── out/               # Rendered SVG output
+├── src/
+│   ├── cli.ts         # CLI entry point
+│   ├── index.ts       # Public exports
+│   └── render.ts      # Core rendering logic
 ├── package.json
-└── INSTALL.md
+└── mise.toml
 ```
 
-## Skills
+## Diagram Types Supported
 
-21 specialized skills available in `.ruler/skills/`:
+The project includes examples of:
 
-adapt, animate, arrange, audit, bolder, clarify, colorize, critique, delight, distill, extract, frontend-design, harden, normalize, onboard, optimize, overdrive, polish, quieter, teach-impeccable, typeset
+- **Flowchart** - Activity and process flows
+- **Class Diagram** - Object-oriented class relationships
+- **Architecture Beta** - System architecture visualization
+
+## Commands
+
+| Command | Description |
+|---------|-------------|
+| `bun run render` | Render all diagrams to SVG |
+| `bun run lint` | Lint with oxlint |
+| `bun run format` | Format with oxfmt |
+| `bun run check` | Run lint and format |
+| `bun run clean` | Remove output directory |

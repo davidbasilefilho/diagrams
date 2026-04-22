@@ -21,6 +21,7 @@ bun run render
 ```
 
 Expected output:
+
 ```
 Rendered 3 diagrams:
   - out/diagrama-atividades-cursos.svg
@@ -72,10 +73,10 @@ The project includes examples of:
 
 ## Commands
 
-| Command | Description |
-|---------|-------------|
+| Command          | Description                |
+| ---------------- | -------------------------- |
 | `bun run render` | Render all diagrams to SVG |
-| `bun run lint` | Lint with oxlint |
-| `bun run format` | Format with oxfmt |
-| `bun run check` | Run lint and format |
-| `bun run clean` | Remove output directory |
+| `bun run lint`   | Lint with oxlint           |
+| `bun run format` | Format with oxfmt          |
+| `bun run check`  | Run lint and format        |
+| `bun run clean`  | Remove output directory    |
